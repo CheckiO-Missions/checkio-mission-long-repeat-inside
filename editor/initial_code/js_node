@@ -1,0 +1,19 @@
+"use strict";
+
+function repeatInside(line) {
+    // length the longest substring that consists of the same char
+
+    // your code here
+    return '';
+}
+
+var assert = require('assert');
+
+if (!global.is_checking) {
+    assert.equal(repeatInside('aaaaa'), 'aaaaa', "First")
+    assert.equal(repeatInside('aabbff'), 'aa', "Second")
+    assert.equal(repeatInside('aababcc'), 'abab', "Third")
+    assert.equal(repeatInside('abc'), '', "Forth")
+    assert.equal(repeatInside('abcabcabab'), 'abcabc', "Fifth")
+    console.log('"Run" is good. How is "Check"?');
+}
