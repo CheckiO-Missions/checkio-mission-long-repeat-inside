@@ -1,6 +1,6 @@
 def repeat_inside(line):
     """
-        the longest substring without repeating chars
+        first the longest repeating substring
     """
     # your code here
     return line
