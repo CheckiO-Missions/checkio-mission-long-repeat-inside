@@ -11,41 +11,41 @@ Each test is dict with
 TESTS = {
     "Basics": [
         {
-            "input": "aaaaa",
+            "input": ["aaaaa"],
             "answer": 'aaaaa'
         },
         {
-            "input": "aabbff",
+            "input": ["aabbff"],
             "answer": 'aa'
         },
         {
-            "input": "aababcc",
+            "input": ["aababcc"],
             "answer": 'abab'
         },
         {
-            "input": "abc",
+            "input": ["abc"],
             "answer": ''
         },
         {
-            "input": "abcabcabab",
+            "input": ["abcabcabab"],
             "answer": 'abcabc'
         }
     ],
     "Extra": [
         {
-            "input": "ccccc",
+            "input": ["ccccc"],
             "answer": 'ccccc'
         },
         {
-            "input": "rtafafafaf",
+            "input": ["rtafafafaf"],
             "answer": 'afafafaf'
         },
         {
-            "input": "rghtyjdfrtdfdf56r",
+            "input": ["rghtyjdfrtdfdf56r"],
             "answer": 'dfdf'
         },
         {
-            "input": "",
+            "input": [""],
             "answer": ''
         }
     ]

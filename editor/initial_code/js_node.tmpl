@@ -1,0 +1,27 @@
+{% comment %}New initial code template{% endcomment %}
+{% block env %}import assert from "assert";{% endblock env %}
+
+{% block start %}
+function repeatInside(line: string): string{
+    // first the longest repeating substring
+
+    // your code here
+    return '';
+}
+{% endblock start %}
+
+{% block example %}
+console.log('Example:');
+console.log(repeatInside('aaaaa'));
+{% endblock %}
+
+// These "asserts" are used for self-checking
+{% block tests %}
+{% for t in tests %}
+assert.strictEqual({% block call %}repeatInside({{t.input|j_args}})
+{% endblock %}, {% block result %}{{t.answer|j}}{% endblock %});{% endfor %}
+{% endblock %}
+
+{% block final %}
+console.log("Coding complete? Click 'Check Solution' to earn rewards!");
+{% endblock final %}

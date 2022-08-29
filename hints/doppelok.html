@@ -1,0 +1,176 @@
+<body data-author="Doppelok">
+<div class="question-answer">
+    <div class="question">
+        I don't know how to start solving this mission
+    </div>
+    <div class="answer">
+        You need to determine the longest substring that occurs more than once in a string. For example, you can use for
+        loops to iterate over a given string and substrings, and then return the maximum length. Also, don't forget that if
+        the string is empty or doesn't contain any substrings matching the condition, you should return the empty string "".
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        I need help to continue the mission
+    </div>
+    <div class="answer">
+        It will be useful for you to read some information about:
+        <a href='https://docs.python.org/3.10/library/stdtypes.html?highlight=range#range'>range()</a>
+        (<a href='https://www.w3schools.com/python/ref_func_range.asp'>example</a> ),
+        <a href='https://docs.python.org/3/tutorial/datastructures.html'>list.append()</a>
+        (<a href='https://www.w3schools.com/python/ref_list_append.asp'>example</a> ), and
+        <a href='https://docs.python.org/3/library/functions.html?highlight=len#len'>len()</a>
+        (<a href='https://www.w3schools.com/python/ref_func_len.asp'>example</a> ),
+        (<a href='https://docs.python.org/3.10/library/functions.html?highlight=max#max'>max()</a> ),
+        (<a href='https://www.w3schools.com/python/ref_func_max.asp'>example</a> ).
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Need help!
+    </div>
+    <div class="answer">
+        Let's start with the fact that in for loops you need to iterate over the row and define the boundaries of the
+        substrings. The task is that the substring changes every cycle to "substring + 1 element". In this way, we will go through each variant of the substring.
+        <pre class="brush: python">
+line = 'abc'
+for i in range(len(line)):  # Here we define each time the beginning of the substring
+    for j in range(i+1, len(line) + 1):  # Here we define the end of the substring each time
+            print(line[i:j])
+
+# output
+a
+ab
+abc
+b
+bc
+c
+        </pre>
+        As you can see, we have gone through the string and outputted all possible variations of the substrings.
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        I'm stuck. I need a little hint.
+    </div>
+    <div class="answer">
+        We now need to find how many times each of our substrings occurs in the string.
+        We will use the for loop to enumerate the possible options.
+        <pre class="brush: python">
+for i in range(len(line)):
+    for j in range(i+1, len(line) + 1):
+        for k in range(2, len(line) + 1):  # k - serves as a multiplier to obtain increased combinations of substrings
+            print(line[i:j] * k)
+
+# output
+aa
+aaa
+abab
+ababab
+abcabc
+abcabcabc
+bb
+bbb
+bcbc
+bcbcbc
+cc
+ccc
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Nothing works. SOS
+    </div>
+    <div class="answer">
+        OK, use the if condition to check if the increased substring variation is included in the given string.
+        <pre class="brush: python">
+for i in range(len(line)):
+    for j in range(i+1, len(line) + 1):
+        for k in range(2, len(line) + 1):
+            if line[i:j] * k in line:
+                print(line[i:j] * k)
+
+# output
+""
+        </pre>
+        As you can see, the condition returns us an empty string. This is because we do not meet the condition of the
+        mission. Here's an example on the "aaaa" string.
+        <pre class="brush: python">
+for i in range(len(line)):
+    for j in range(i+1, len(line) + 1):
+        for k in range(2, len(line) + 1):
+            if line[i:j] * k in line:
+                print(line[i:j] * k)
+
+# output
+aa
+aaa
+aaaa
+aaaa
+aa
+aaa
+...
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        I don't want to give up, help!
+    </div>
+    <div class="answer">
+        You have a few things left. Add a list variable to which you will add your results after checking if.
+        And also return the longest string from this list.
+        <pre class="brush: python">
+def repeat_inside(line: str) -> str:
+    result = []
+    for i in range(len(line)):
+        for j in range(i+1, len(line) + 1):
+            for k in range(2, len(line) + 1):
+                if line[i:j] * k in line:
+                    result.append(line[i:j] * k)
+    return max(result, key= len, default='')
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        I want to be the best of the best PROGRAMMERS!!! SHOW ME MORE SOLUTIONS!!1!!!11!
+    </div>
+    <div class="answer">
+        Okay, okay! That's the spirit!=)
+        This solution will be difficult to understand. The
+        <a href='https://docs.python.org/3.10/library/re.html'>"re"</a> module is used here. With the help of the
+        expression "re.findall(r'(?=((.+?)\2+))', line)"
+        we can walk through the string and get all the combinations that occur in the string more than once and simply return the longest substring.
+        <pre class="brush: python">
+import re
+
+
+def repeat_inside(line: str) -> str:
+    result = re.findall(r'(?=((.+?)\2+))', line)
+    return max([i[0] for i in result], key= len, default= '')
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        I want more!
+    </div>
+    <div class="answer">
+        Look at this solution. This is a one-line version of our solution.
+        <pre class="brush: python">
+def repeat_inside(line: str) -> str:
+    return max([
+        line[i:j] * k
+        for i in range(len(line))
+        for j in range(i+1, len(line))
+        for k in range(2, len(line) + 1)
+        if line[i:j] * k in line
+    ], key=len, default= '')
+        </pre>
+    </div>
+</div>
+
+
+</body>
