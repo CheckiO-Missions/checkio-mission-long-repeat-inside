@@ -18,18 +18,6 @@
     <p>
         <strong>Example:</strong>
     </p>
-<pre class="brush: python">{% if interpreter.slug == "js-node" %}
-repeatInside('aaaaa') == 'aaaaa'
-repeatInside('aabbff') == 'aa'
-repeatInside('aababcc') == 'abab'
-repeatInside('abc') == ''
-repeatInside('abcabcabab') == 'abcabc'
-{% else %}
-repeat_inside('aaaaa') == 'aaaaa'
-repeat_inside('aabbff') == 'aa'
-repeat_inside('aababcc') == 'abab'
-repeat_inside('abc') == ''
-repeat_inside('abcabcabab') == 'abcabc'
-{% endif %}</pre>
+<pre class="brush: {% if is_js %}javascript{% else %}python{% endif %}">{{init_code_tmpl}}</pre>
 </div>
 

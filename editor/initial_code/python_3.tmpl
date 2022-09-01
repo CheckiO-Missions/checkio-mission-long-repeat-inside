@@ -1,0 +1,26 @@
+{% comment %}New initial code template{% endcomment %}
+{% block env %}{% endblock env %}
+
+{% block start %}
+def repeat_inside(line: str) -> str:
+    """
+        first the longest repeating substring
+    """
+    # your code here
+    return line
+{% endblock start %}
+
+{% block example %}
+print('Example:')
+print(repeat_inside('aaaaa'))
+{% endblock %}
+
+{% block tests %}
+{% for t in tests %}
+assert {% block call %}repeat_inside({{t.input|p_args}})
+{% endblock %} == {% block result %}{{t.answer|p}}{% endblock %}{% endfor %}
+{% endblock %}
+
+{% block final %}
+print("The mission is done! Click 'Check Solution' to earn rewards!")
+{% endblock final %}
