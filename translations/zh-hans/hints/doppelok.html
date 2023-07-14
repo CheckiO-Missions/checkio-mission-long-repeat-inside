@@ -1,0 +1,188 @@
+<body data-author="Doppelok">
+<div class="question-answer">
+    <div class="question">
+        我不知道如何开始解决这个任务
+    </div>
+    <div class="answer">
+        <p>您需要确定一个字符串中出现不止一次的最长子串。例如，您可以使用
+        循环来遍历给定的字符串和子串，然后返回最大长度。另外，不要忘记，如果
+        字符串为空或不包含任何符合条件的子串，则应返回空字符串""。</p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        我需要帮助以继续完成任务
+    </div>
+    <div class="answer">
+        <p>您可以阅读以下信息：
+       <a target="_blank" href='https://docs.python.org/3.10/library/stdtypes.html?highlight=range#range'>range()</a>
+        (<a target="_blank" href='https://www.w3schools.com/python/ref_func_range.asp'>example</a>)、
+       <a target="_blank" href='https://docs.python.org/3/tutorial/datastructures.html'>list.append()</a>
+        (<a target="_blank" href='https://www.w3schools.com/python/ref_list_append.asp'>example</a>)、
+       <a target="_blank" href='https://docs.python.org/3/library/functions.html?highlight=len#len'>len()</a>
+        (<a target="_blank" href='https://www.w3schools.com/python/ref_func_len.asp'>example</a>) 和 
+       <a target="_blank" href='https://docs.python.org/3.10/library/functions.html?highlight=max#max'>max()</a>
+        (<a target="_blank" href='https://www.w3schools.com/python/ref_func_max.asp'>example</a>)。</p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        需要帮助
+    </div>
+    <div class="answer">
+        <p>让我们从以下事实开始：在 for 循环中，您需要遍历行并定义
+        子串的边界。我们的任务是，子串在每个循环中变化为 "子串+1个元素"。这样，我们将遍历子串的每一个变体。</p>
+        <pre class="brush: python">
+line = 'abc'
+for i in range(len(line)):  # Here we define each time the beginning of the substring
+    for j in range(i+1, len(line) + 1):  # Here we define the end of the substring each time
+            print(line[i:j])
+        </pre>
+        <div class="output">
+            <p>输出：</p>
+            <pre>
+a
+ab
+abc
+b
+bc
+c</pre>
+        </div>
+        <p>如您所见，我们已经浏览了字符串，并输出了所有可能的子串变化。</p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        我卡住了。我需要一点提示。
+    </div>
+    <div class="answer">
+        <p>现在我们需要找出每个子串在字符串中出现的次数。
+        我们将使用for循环来枚举可能的选项。</p>
+        <pre class="brush: python">
+for i in range(len(line)):
+    for j in range(i+1, len(line) + 1):
+        for k in range(2, len(line) + 1):  # k - serves as a multiplier to obtain increased combinations of substrings
+            print(line[i:j] * k)
+        </pre>
+        <div class="output">
+            <p>输出：</p>
+            <pre>
+aa
+aaa
+abab
+ababab
+abcabc
+abcabcabc
+bb
+bbb
+bcbc
+bcbcbc
+cc
+ccc</pre>
+        </div> 
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        没有任何结果。SOS
+    </div>
+    <div class="answer">
+        <p>确定，使用if条件检查给定字符串中是否包含增加的子串变化。</p>
+        <pre class="brush: python">
+for i in range(len(line)):
+    for j in range(i+1, len(line) + 1):
+        for k in range(2, len(line) + 1):
+            if line[i:j] * k in line:
+                print(line[i:j] * k)
+        </pre>
+        <div class="output">
+            <p>输出：</p>
+            <pre>""</pre>
+        </div>
+        <p>如您所见，条件返回空字符串。这是因为我们没有满足
+        任务。下面是 "aaaa "字符串的示例。</p>
+        <pre class="brush: python">
+for i in range(len(line)):
+    for j in range(i+1, len(line) + 1):
+        for k in range(2, len(line) + 1):
+            if line[i:j] * k in line:
+                print(line[i:j] * k)
+        </pre>
+        <div class="output">
+            <p>输出：</p>
+            <pre>
+aa
+aaa
+aaaa
+aaaa
+aa
+aaa
+...</pre>
+        </div>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        我不想放弃，帮帮我！
+    </div>
+    <div class="answer">
+        <p>您还剩下一些事情。添加一个列表变量，在检查if后将结果添加到列表变量中。
+        同时返回列表中最长的字符串。</p>
+        <div class="spoiler">
+        <pre class="brush: python">
+def repeat_inside(line: str) -> str:
+            
+    result = []
+    for i in range(len(line)):
+        for j in range(i+1, len(line) + 1):
+            for k in range(2, len(line) + 1):
+                if line[i:j] * k in line:
+                    result.append(line[i:j] * k)
+    return max(result, key= len, default='')
+        </pre>
+        </div>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        我想成为最好的程序员中的最好的程序员！！告诉我更多的解决方案！！！1！！！11！
+    </div>
+    <div class="answer">
+        <p>好吧，好吧！这就是精神！=)
+        这个解决方案很难理解。这里使用了
+        <a target="_blank" href='https://docs.python.org/3.10/library/re.html'>"re"</a> 模块在这里被使用。在表达式 "re.findall(r'(?=((.+?)\2+))', line) "的帮助下，我们可以遍历字符串，得到所有在字符串中出现超过一次的组合，并简单地返回最长的子串。</p>
+        <div class="spoiler">
+        <pre class="brush: python">
+import re
+
+
+def repeat_inside(line: str) -> str:
+            
+    result = re.findall(r'(?=((.+?)\2+))', line)
+    return max([i[0] for i in result], key= len, default= '')
+        </pre>
+        </div>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        我还想要更多！
+    </div>
+    <div class="answer">
+        <p>看看这个解决方案。这是我们解决方案的单行版本。</p>
+        <div class="spoiler">
+        <pre class="brush: python">
+def repeat_inside(line: str) -> str:
+            
+    return max([
+        line[i:j] * k
+        for i in range(len(line))
+        for j in range(i+1, len(line))
+        for k in range(2, len(line) + 1)
+        if line[i:j] * k in line
+    ], key=len, default= '')
+        </pre>
+        </div>
+    </div>
+</div>
+</body>
