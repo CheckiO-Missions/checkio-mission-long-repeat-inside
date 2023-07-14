@@ -1,0 +1,188 @@
+<body data-author="Doppelok">
+<div class="question-answer">
+    <div class="question">
+        Je ne sais pas comment commencer à résoudre cette mission
+    </div>
+    <div class="answer">
+        <p>Vous devez déterminer la sous-chaîne la plus longue qui apparaît plus d'une fois dans une chaîne de caractères. Par exemple, vous pouvez utiliser des boucles for
+        pour itérer sur une chaîne et des sous-chaînes données, puis renvoyer la longueur maximale. N'oubliez pas non plus que si
+        la chaîne est vide ou ne contient aucune sous-chaîne correspondant à la condition, vous devez renvoyer la chaîne vide "".</p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        J'ai besoin d'aide pour poursuivre la mission
+    </div>
+    <div class="answer">
+        <p>Il vous sera utile de lire quelques informations sur:
+       <a target="_blank" href='https://docs.python.org/3.10/library/stdtypes.html?highlight=range#range'>range()</a>
+        (<a target="_blank" href='https://www.w3schools.com/python/ref_func_range.asp'>example</a>),
+       <a target="_blank" href='https://docs.python.org/3/tutorial/datastructures.html'>list.append()</a>
+        (<a target="_blank" href='https://www.w3schools.com/python/ref_list_append.asp'>example</a>),
+       <a target="_blank" href='https://docs.python.org/3/library/functions.html?highlight=len#len'>len()</a>
+        (<a target="_blank" href='https://www.w3schools.com/python/ref_func_len.asp'>example</a>) et 
+       <a target="_blank" href='https://docs.python.org/3.10/library/functions.html?highlight=max#max'>max()</a>
+        (<a target="_blank" href='https://www.w3schools.com/python/ref_func_max.asp'>example</a>).</p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Besoin d'aide!
+    </div>
+    <div class="answer">
+        <p>Commençons par le fait que dans les boucles for, vous devez itérer sur la ligne et définir les limites des
+        sous-chaînes. La tâche est que la sous-chaîne se transforme à chaque cycle en "sous-chaîne + 1 élément". De cette manière, nous passerons en revue chaque variante de la sous-chaîne.</p>
+        <pre class="brush: python">
+line = 'abc'
+for i in range(len(line)):  # Here we define each time the beginning of the substring
+    for j in range(i+1, len(line) + 1):  # Here we define the end of the substring each time
+            print(line[i:j])
+        </pre>
+        <div class="output">
+            <p>Résultat:</p>
+            <pre>
+a
+ab
+abc
+b
+bc
+c</pre>
+        </div>
+        <p>Comme vous pouvez le voir, nous avons parcouru la chaîne et produit toutes les variations possibles des sous-chaînes.</p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Je suis bloqué. J'ai besoin d'un petit conseil.
+    </div>
+    <div class="answer">
+        <p>Nous devons maintenant trouver combien de fois chacune de nos sous-chaînes apparaît dans la chaîne.
+        Nous utiliserons la boucle for pour énumérer les options possibles.</p>
+        <pre class="brush: python">
+for i in range(len(line)):
+    for j in range(i+1, len(line) + 1):
+        for k in range(2, len(line) + 1):  # k - serves as a multiplier to obtain increased combinations of substrings
+            print(line[i:j] * k)
+        </pre>
+        <div class="output">
+            <p>Résultat:</p>
+            <pre>
+aa
+aaa
+abab
+ababab
+abcabc
+abcabcabc
+bb
+bbb
+bcbc
+bcbcbc
+cc
+ccc</pre>
+        </div> 
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Rien ne fonctionne. SOS
+    </div>
+    <div class="answer">
+        <p>OK, utilisez la condition if pour vérifier si la variation de sous-chaîne augmentée est incluse dans la chaîne donnée.</p>
+        <pre class="brush: python">
+for i in range(len(line)):
+    for j in range(i+1, len(line) + 1):
+        for k in range(2, len(line) + 1):
+            if line[i:j] * k in line:
+                print(line[i:j] * k)
+        </pre>
+        <div class="output">
+            <p>Résultat:</p>
+            <pre>""</pre>
+        </div>
+        <p>Comme vous pouvez le voir, la condition nous renvoie une chaîne vide. Cela s'explique par le fait que nous ne remplissons pas la condition de la
+        mission. Voici un exemple pour la chaîne "aaaa".</p>
+        <pre class="brush: python">
+for i in range(len(line)):
+    for j in range(i+1, len(line) + 1):
+        for k in range(2, len(line) + 1):
+            if line[i:j] * k in line:
+                print(line[i:j] * k)
+        </pre>
+        <div class="output">
+            <p>Résultat:</p>
+            <pre>
+aa
+aaa
+aaaa
+aaaa
+aa
+aaa
+...</pre>
+        </div>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Je ne veux pas abandonner, à l'aide!
+    </div>
+    <div class="answer">
+        <p>Il vous reste quelques petites choses à faire. Ajoutez une variable liste à laquelle vous ajouterez vos résultats après avoir vérifié si.
+        Et aussi retourner la chaîne la plus longue de cette liste.</p>
+        <div class="spoiler">
+        <pre class="brush: python">
+def repeat_inside(line: str) -> str:
+            
+    result = []
+    for i in range(len(line)):
+        for j in range(i+1, len(line) + 1):
+            for k in range(2, len(line) + 1):
+                if line[i:j] * k in line:
+                    result.append(line[i:j] * k)
+    return max(result, key= len, default='')
+        </pre>
+        </div>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Je veux être le meilleur des meilleurs PROGRAMMEURS!!! MONTREZ-MOI PLUS DE SOLUTIONS!!1!!!11!
+    </div>
+    <div class="answer">
+        <p>D'accord, d'accord! C'est l'esprit!=)
+        Cette solution sera difficile à comprendre. Le module
+        <a target="_blank" href='https://docs.python.org/3.10/library/re.html'>"re"</a> est utilisé ici. Avec l'aide de l'expression "re.findall(r'(?=((.+?)\2+))', line)", nous pouvons parcourir la chaîne et obtenir toutes les combinaisons qui apparaissent dans la chaîne plus d'une fois et renvoyer simplement la sous-chaîne la plus longue.</p>
+        <div class="spoiler">
+        <pre class="brush: python">
+import re
+
+
+def repeat_inside(line: str) -> str:
+            
+    result = re.findall(r'(?=((.+?)\2+))', line)
+    return max([i[0] for i in result], key= len, default= '')
+        </pre>
+        </div>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        J'en veux plus!
+    </div>
+    <div class="answer">
+        <p>Regardez cette solution. Il s'agit d'une version en une ligne de notre solution.</p>
+        <div class="spoiler">
+        <pre class="brush: python">
+def repeat_inside(line: str) -> str:
+            
+    return max([
+        line[i:j] * k
+        for i in range(len(line))
+        for j in range(i+1, len(line))
+        for k in range(2, len(line) + 1)
+        if line[i:j] * k in line
+    ], key=len, default= '')
+        </pre>
+        </div>
+    </div>
+</div>
+</body>
