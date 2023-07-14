@@ -1,28 +1,28 @@
 <body data-author="Doppelok">
 <div class="question-answer">
     <div class="question">
-        Я не знаю, як розпочати вирішення цієї місії
+        Я не знаю, як почати вирішувати цю місію
     </div>
     <div class="answer">
-        Тобі потрібно визначити найдовший підрядок, який зустрічається більше одного разу, в рядку. Наприклад, ти можеш
-        використати цикли for для ітерації по заданому рядку та визначення підрядків, а потім повернути максимально довгий. Також не забувай що у випадку,
-        коли рядок порожній або не містить підрядків, які відповідають умові, ти маєш повернути порожній рядок "".
+        <p>Вам потрібно визначити найдовший підрядок, який зустрічається у рядку більше одного разу. Наприклад, можна використати цикли for
+        для перебору заданого рядка і підрядків, а потім повернути максимальну довжину. Також не забувайте, що якщо
+        рядок порожній або не містить жодного підрядка, що відповідає умові, ви повинні повернути порожній рядок "".</p>
     </div>
 </div>
 <div class="question-answer">
     <div class="question">
-        Мені потрібна допомога, щоб продовжити місію
+        Мені потрібна допомога для продовження місії
     </div>
     <div class="answer">
-        Тобі буде корисно прочитати трохи інформації про:
-        <a href='https://docs.python.org/3.10/library/stdtypes.html?highlight=range#range'>range()</a>
-        (<a href='https://www.w3schools.com/python/ref_func_range.asp'>приклад</a> ),
-        <a href='https://docs.python.org/3/tutorial/datastructures.html'>list.append()</a>
-        (<a href='https://www.w3schools.com/python/ref_list_append.asp'>приклад</a> ), та
-        <a href='https://docs.python.org/3/library/functions.html?highlight=len#len'>len()</a>
-        (<a href='https://www.w3schools.com/python/ref_func_len.asp'>приклад</a> ),
-        (<a href='https://docs.python.org/3.10/library/functions.html?highlight=max#max'>max()</a> ),
-        (<a href='https://www.w3schools.com/python/ref_func_max.asp'>приклад</a> ).
+        <p>Вам буде корисно прочитати деяку інформацію про:
+       <a target="_blank" href='https://docs.python.org/3.10/library/stdtypes.html?highlight=range#range'>range()</a>
+        (<a target="_blank" href='https://www.w3schools.com/python/ref_func_range.asp'>example</a>),
+       <a target="_blank" href='https://docs.python.org/3/tutorial/datastructures.html'>list.append()</a>
+        (<a target="_blank" href='https://www.w3schools.com/python/ref_list_append.asp'>example</a>),
+       <a target="_blank" href='https://docs.python.org/3/library/functions.html?highlight=len#len'>len()</a>
+        (<a target="_blank" href='https://www.w3schools.com/python/ref_func_len.asp'>example</a>) та 
+       <a target="_blank" href='https://docs.python.org/3.10/library/functions.html?highlight=max#max'>max()</a>
+        (<a target="_blank" href='https://www.w3schools.com/python/ref_func_max.asp'>example</a>).</p>
     </div>
 </div>
 <div class="question-answer">
@@ -30,39 +30,43 @@
         Потрібна допомога!
     </div>
     <div class="answer">
-        Почнемо з того, що в циклах for потрібно виконати ітерацію по рядку та визначити межі підрядків. Задача в тому,
-        щоб підрядок змінювався кожен цикл на "підрядок + 1 елемент". Таким чином ми переберемо кожен варіант підрядка.
+        <p>Почнемо з того, що в циклах for вам потрібно пройтись по рядку і визначити межі підрядків
+        підрядків. Завдання полягає в тому, щоб підрядок змінювався кожен цикл на "підрядок + 1 елемент". Таким чином ми переберемо кожен варіант підрядка.</p>
         <pre class="brush: python">
 line = 'abc'
-for i in range(len(line)):  # Тут ми визначаємо кожного разу початок підрядка
-    for j in range(i+1, len(line) + 1):  # Тут ми визначаємо кожного разу кінець підрядка
+for i in range(len(line)):  # Here we define each time the beginning of the substring
+    for j in range(i+1, len(line) + 1):  # Here we define the end of the substring each time
             print(line[i:j])
-
-# output
+        </pre>
+        <div class="output">
+            <p>Вихідні дані:</p>
+            <pre>
 a
 ab
 abc
 b
 bc
-c
-        </pre>
-        Як бачиш, ми пройшлись по рядку та вивели усі можливі варіації підрядків.
+c</pre>
+        </div>
+        <p>Як бачите, ми пройшлися по рядку і вивели всі можливі варіанти підрядків.</p>
     </div>
 </div>
 <div class="question-answer">
     <div class="question">
-        Я застряг. Мені потрібна маленька підказка.
+        Я застряг. Мені потрібна невелика підказка.
     </div>
     <div class="answer">
-        Нам потрібно тепер знайти скільки разів кожен із наших підрядків зустрічається в рядку. Скористаємось циклом
-        for для перерахунку можливих варіантів.
+        <p>Тепер нам потрібно знайти, скільки разів кожен з наших підрядків зустрічається у рядку.
+        Для перебору можливих варіантів ми використаємо цикл for.</p>
         <pre class="brush: python">
 for i in range(len(line)):
     for j in range(i+1, len(line) + 1):
-        for k in range(2, len(line) + 1):  # k - слугує множником, щоб отримати збільшені комбінації підрядків
+        for k in range(2, len(line) + 1):  # k - serves as a multiplier to obtain increased combinations of substrings
             print(line[i:j] * k)
-
-# output
+        </pre>
+        <div class="output">
+            <p>Виведіть результат:</p>
+            <pre>
 aa
 aaa
 abab
@@ -74,8 +78,8 @@ bbb
 bcbc
 bcbcbc
 cc
-ccc
-        </pre>
+ccc</pre>
+        </div> 
     </div>
 </div>
 <div class="question-answer">
@@ -83,46 +87,51 @@ ccc
         Нічого не працює. SOS
     </div>
     <div class="answer">
-        Гаразд, скористайся умовою if, щоб перевірити чи входить збільшена варіація підрядка до заданого рядка.
+        <p>Гаразд, використовуйте умову if, щоб перевірити, чи включено збільшену варіацію підрядка до заданого рядка.</p>
         <pre class="brush: python">
 for i in range(len(line)):
     for j in range(i+1, len(line) + 1):
         for k in range(2, len(line) + 1):
             if line[i:j] * k in line:
                 print(line[i:j] * k)
-
-# output
-""
         </pre>
-        Як бачиш, нам повертає умова порожній рядок. Це тому що в нас не виконується умова задачі. Ось приклад на
-        рядку "аааа".
+        <div class="output">
+            <p>Виведення:</p>
+            <pre>""</pre>
+        </div>
+        <p>Як бачите, умова повертає порожній рядок. Це тому, що ми не виконали умову задачі
+        задачі. Ось приклад для рядка "aaaa".</p>
         <pre class="brush: python">
 for i in range(len(line)):
     for j in range(i+1, len(line) + 1):
         for k in range(2, len(line) + 1):
             if line[i:j] * k in line:
                 print(line[i:j] * k)
-
-# output
-aa
-aaa
-aaaa
-aaaa
-aa
-aaa
-...
         </pre>
+        <div class="output">
+            <p>Вихідні дані:</p>
+            <pre>
+aa
+aaa
+aaaa
+aaaa
+aa
+aaa
+...</pre>
+        </div>
     </div>
 </div>
 <div class="question-answer">
     <div class="question">
-        Не хочу здаватись, допоможи!
+        Я не хочу здаватись, допоможіть!
     </div>
     <div class="answer">
-        Тобі залишилось декілька речей. Додай змінну список, в яку ти будеш додавати свої результати після перевірки if.
-        А також повернути максимально довгий рядок із цього списку.
+        <p>У вас залишилось декілька кроків. Додайте змінну-список, до якої ви будете додавати результати після перевірки if.
+        А також повернути найдовший рядок з цього списку.</p>
+        <div class="spoiler">
         <pre class="brush: python">
 def repeat_inside(line: str) -> str:
+            
     result = []
     for i in range(len(line)):
         for j in range(i+1, len(line) + 1):
@@ -131,25 +140,28 @@ def repeat_inside(line: str) -> str:
                     result.append(line[i:j] * k)
     return max(result, key= len, default='')
         </pre>
+        </div>
     </div>
 </div>
 <div class="question-answer">
     <div class="question">
-        Я хочу бути кращим з кращих ПРОГРАМІСТІВ!!! ПОКАЗАЖИ МЕНІ БІЛЬШЕ РІШЕНЬ!!1!!!11!
+        Я хочу бути кращим з кращих програмістів!!! ПОКАЖІТЬ МЕНІ БІЛЬШЕ РІШЕНЬ!!!1!!!11!
     </div>
     <div class="answer">
-        Добре, добре! Оце настрій!=)
-        Це рішення буде важкувато зрозуміти. Тут використовують модуль
-        <a href='https://docs.python.org/3.10/library/re.html'>"re"</a> . За допомогою виразу "re.findall(r'(?=((.+?)\2+))', line)"
-        ми можемо пройтись по рядку та отримати усі комбінації які зустрічаються у рядку більше одного разу та повертаємо просто максимально довгий підрядок.
+        <p>Гаразд, гаразд! Ось це настрій!)
+        Цей розв'язок буде складним для розуміння. Тут використовується модуль
+        <a target="_blank" href='https://docs.python.org/3.10/library/re.html'>"re"</a> тут використовується модуль За допомогою виразу "re.findall(r'(?=((.+?)\2+))', line)" ми можемо пройтись по рядку і отримати всі комбінації, які зустрічаються в рядку більше одного разу і просто повернути найдовший підрядок.</p>
+        <div class="spoiler">
         <pre class="brush: python">
 import re
 
 
 def repeat_inside(line: str) -> str:
+            
     result = re.findall(r'(?=((.+?)\2+))', line)
     return max([i[0] for i in result], key= len, default= '')
         </pre>
+        </div>
     </div>
 </div>
 <div class="question-answer">
@@ -157,9 +169,11 @@ def repeat_inside(line: str) -> str:
         Я хочу більше!
     </div>
     <div class="answer">
-        Подивись на цей розв'язок. Це варіант нашого рішення в один рядок.
+        <p>Погляньте на цей розв'язок. Це однорядкова версія нашого розв'язку.</p>
+        <div class="spoiler">
         <pre class="brush: python">
 def repeat_inside(line: str) -> str:
+            
     return max([
         line[i:j] * k
         for i in range(len(line))
@@ -168,8 +182,7 @@ def repeat_inside(line: str) -> str:
         if line[i:j] * k in line
     ], key=len, default= '')
         </pre>
+        </div>
     </div>
 </div>
-
-
 </body>
