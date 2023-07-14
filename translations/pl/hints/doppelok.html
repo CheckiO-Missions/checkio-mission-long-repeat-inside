@@ -1,0 +1,188 @@
+<body data-author="Doppelok">
+<div class="question-answer">
+    <div class="question">
+        Nie wiem, jak zacząć rozwiązywać tę misję
+    </div>
+    <div class="answer">
+        <p>Musi Pan określić najdłuższy podciąg, który występuje więcej niż raz w ciągu. Można na przykład użyć pętli for
+        aby iterować po danym ciągu i podciągach, a następnie zwrócić maksymalną długość. Proszę również pamiętać, że jeśli
+        ciąg jest pusty lub nie zawiera żadnych podciągów spełniających warunek, należy zwrócić pusty ciąg "".</p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Potrzebuję pomocy, aby kontynuować misję
+    </div>
+    <div class="answer">
+        <p>Przydatne będzie przeczytanie kilku informacji na temat:
+       <a target="_blank" href='https://docs.python.org/3.10/library/stdtypes.html?highlight=range#range'>range()</a>
+        (<a target="_blank" href='https://www.w3schools.com/python/ref_func_range.asp'>example</a>),
+       <a target="_blank" href='https://docs.python.org/3/tutorial/datastructures.html'>list.append()</a>
+        (<a target="_blank" href='https://www.w3schools.com/python/ref_list_append.asp'>example</a>),
+       <a target="_blank" href='https://docs.python.org/3/library/functions.html?highlight=len#len'>len()</a>
+        (<a target="_blank" href='https://www.w3schools.com/python/ref_func_len.asp'>example</a>) i 
+       <a target="_blank" href='https://docs.python.org/3.10/library/functions.html?highlight=max#max'>max()</a>
+        (<a target="_blank" href='https://www.w3schools.com/python/ref_func_max.asp'>example</a>).</p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Proszę o pomoc!
+    </div>
+    <div class="answer">
+        <p>Zacznijmy od tego, że w pętlach for trzeba iterować po wierszu i definiować granice podciągów
+        podciągów. Zadanie polega na tym, że podciąg zmienia się co cykl na "podciąg + 1 element". W ten sposób przejdziemy przez każdy wariant podłańcucha.</p>
+        <pre class="brush: python">
+line = 'abc'
+for i in range(len(line)):  # Here we define each time the beginning of the substring
+    for j in range(i+1, len(line) + 1):  # Here we define the end of the substring each time
+            print(line[i:j])
+        </pre>
+        <div class="output">
+            <p>Wynik:</p>
+            <pre>
+a
+ab
+abc
+b
+bc
+c</pre>
+        </div>
+        <p>Jak Państwo widzą, przeszliśmy przez ciąg i wypisaliśmy wszystkie możliwe warianty podciągów.</p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Utknąłem. Potrzebuję małej podpowiedzi.
+    </div>
+    <div class="answer">
+        <p>Musimy teraz sprawdzić, ile razy każdy z naszych podciągów występuje w ciągu.
+        Użyjemy pętli for, aby wyliczyć możliwe opcje.</p>
+        <pre class="brush: python">
+for i in range(len(line)):
+    for j in range(i+1, len(line) + 1):
+        for k in range(2, len(line) + 1):  # k - serves as a multiplier to obtain increased combinations of substrings
+            print(line[i:j] * k)
+        </pre>
+        <div class="output">
+            <p>Wynik:</p>
+            <pre>
+aa
+aaa
+abab
+ababab
+abcabc
+abcabcabc
+bb
+bbb
+bcbc
+bcbcbc
+cc
+ccc</pre>
+        </div> 
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Nic nie działa. SOS
+    </div>
+    <div class="answer">
+        <p>OK, proszę użyć warunku if, aby sprawdzić, czy zwiększona wariacja podłańcucha jest zawarta w podanym ciągu.</p>
+        <pre class="brush: python">
+for i in range(len(line)):
+    for j in range(i+1, len(line) + 1):
+        for k in range(2, len(line) + 1):
+            if line[i:j] * k in line:
+                print(line[i:j] * k)
+        </pre>
+        <div class="output">
+            <p>Wynik:</p>
+            <pre>""</pre>
+        </div>
+        <p>Jak widać, warunek zwraca nam pusty ciąg znaków. Dzieje się tak, ponieważ nie spełniamy warunku misji
+        misji. Oto przykład dla ciągu "aaaa".</p>
+        <pre class="brush: python">
+for i in range(len(line)):
+    for j in range(i+1, len(line) + 1):
+        for k in range(2, len(line) + 1):
+            if line[i:j] * k in line:
+                print(line[i:j] * k)
+        </pre>
+        <div class="output">
+            <p>Wynik:</p>
+            <pre>
+aa
+aaa
+aaaa
+aaaa
+aa
+aaa
+...</pre>
+        </div>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Nie chcę się poddawać, proszę pomóc!
+    </div>
+    <div class="answer">
+        <p>Zostało jeszcze kilka rzeczy. Proszę dodać zmienną listy, do której będą dodawane wyniki po sprawdzeniu if.
+        Proszę również zwrócić najdłuższy ciąg z tej listy.</p>
+        <div class="spoiler">
+        <pre class="brush: python">
+def repeat_inside(line: str) -> str:
+            
+    result = []
+    for i in range(len(line)):
+        for j in range(i+1, len(line) + 1):
+            for k in range(2, len(line) + 1):
+                if line[i:j] * k in line:
+                    result.append(line[i:j] * k)
+    return max(result, key= len, default='')
+        </pre>
+        </div>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Chcę być najlepszym z najlepszych PROGRAMISTÓW!!! PROSZĘ POKAZAĆ MI WIĘCEJ ROZWIĄZAŃ!!!1!!!11!
+    </div>
+    <div class="answer">
+        <p>Dobra, dobra! To jest duch!=)
+        To rozwiązanie będzie trudne do zrozumienia. Moduł
+        <a target="_blank" href='https://docs.python.org/3.10/library/re.html'>"re"</a> jest tutaj używany. Za pomocą wyrażenia "re.findall(r'(?=(((.+?)\2+))', line)" możemy przejść przez ciąg i uzyskać wszystkie kombinacje, które występują w ciągu więcej niż jeden raz i po prostu zwrócić najdłuższy podciąg.</p>
+        <div class="spoiler">
+        <pre class="brush: python">
+import re
+
+
+def repeat_inside(line: str) -> str:
+            
+    result = re.findall(r'(?=((.+?)\2+))', line)
+    return max([i[0] for i in result], key= len, default= '')
+        </pre>
+        </div>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Chcę więcej!
+    </div>
+    <div class="answer">
+        <p>Proszę spojrzeć na to rozwiązanie. Jest to jednowierszowa wersja naszego rozwiązania.</p>
+        <div class="spoiler">
+        <pre class="brush: python">
+def repeat_inside(line: str) -> str:
+            
+    return max([
+        line[i:j] * k
+        for i in range(len(line))
+        for j in range(i+1, len(line))
+        for k in range(2, len(line) + 1)
+        if line[i:j] * k in line
+    ], key=len, default= '')
+        </pre>
+        </div>
+    </div>
+</div>
+</body>
