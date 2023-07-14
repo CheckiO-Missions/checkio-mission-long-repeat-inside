@@ -18,10 +18,10 @@
         <a target="_blank" href='https://docs.python.org/3.10/library/stdtypes.html?highlight=range#range'>range()</a>
         (<a target="_blank" href='https://www.w3schools.com/python/ref_func_range.asp'>example</a>),
         <a target="_blank" href='https://docs.python.org/3/tutorial/datastructures.html'>list.append()</a>
-        (<a target="_blank" href='https://www.w3schools.com/python/ref_list_append.asp'>example</a>), and
+        (<a target="_blank" href='https://www.w3schools.com/python/ref_list_append.asp'>example</a>),
         <a target="_blank" href='https://docs.python.org/3/library/functions.html?highlight=len#len'>len()</a>
-        (<a target="_blank" href='https://www.w3schools.com/python/ref_func_len.asp'>example</a> ),
-        (<a target="_blank" href='https://docs.python.org/3.10/library/functions.html?highlight=max#max'>max()</a>),
+        (<a target="_blank" href='https://www.w3schools.com/python/ref_func_len.asp'>example</a>) and 
+        <a target="_blank" href='https://docs.python.org/3.10/library/functions.html?highlight=max#max'>max()</a>
         (<a target="_blank" href='https://www.w3schools.com/python/ref_func_max.asp'>example</a>).</p>
     </div>
 </div>
@@ -37,15 +37,17 @@ line = 'abc'
 for i in range(len(line)):  # Here we define each time the beginning of the substring
     for j in range(i+1, len(line) + 1):  # Here we define the end of the substring each time
             print(line[i:j])
-
-# output
+        </pre>
+        <div class="output">
+            <p>Output:</p>
+            <pre>
 a
 ab
 abc
 b
 bc
-c
-        </pre>
+c</pre>
+        </div>
         <p>As you can see, we have gone through the string and outputted all possible variations of the substrings.</p>
     </div>
 </div>
@@ -61,8 +63,10 @@ for i in range(len(line)):
     for j in range(i+1, len(line) + 1):
         for k in range(2, len(line) + 1):  # k - serves as a multiplier to obtain increased combinations of substrings
             print(line[i:j] * k)
-
-# output
+        </pre>
+        <div class="output">
+            <p>Output:</p>
+            <pre>
 aa
 aaa
 abab
@@ -74,8 +78,8 @@ bbb
 bcbc
 bcbcbc
 cc
-ccc
-        </pre>
+ccc</pre>
+        </div> 
     </div>
 </div>
 <div class="question-answer">
@@ -90,10 +94,11 @@ for i in range(len(line)):
         for k in range(2, len(line) + 1):
             if line[i:j] * k in line:
                 print(line[i:j] * k)
-
-# output
-""
         </pre>
+        <div class="output">
+            <p>Output:</p>
+            <pre>""</pre>
+        </div>
         <p>As you can see, the condition returns us an empty string. This is because we do not meet the condition of the
         mission. Here's an example on the "aaaa" string.</p>
         <pre class="brush: python">
@@ -102,16 +107,18 @@ for i in range(len(line)):
         for k in range(2, len(line) + 1):
             if line[i:j] * k in line:
                 print(line[i:j] * k)
-
-# output
-aa
-aaa
-aaaa
-aaaa
-aa
-aaa
-...
         </pre>
+        <div class="output">
+            <p>Output:</p>
+            <pre>
+aa
+aaa
+aaaa
+aaaa
+aa
+aaa
+...</pre>
+        </div>
     </div>
 </div>
 <div class="question-answer">

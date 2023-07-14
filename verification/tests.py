@@ -29,7 +29,7 @@ TESTS = {
         {
             "input": ["abcabcabab"],
             "answer": 'abcabc'
-        }
+        },
     ],
     "Extra": [
         {
@@ -47,6 +47,6 @@ TESTS = {
         {
             "input": [""],
             "answer": ''
-        }
+        },
     ]
 }
