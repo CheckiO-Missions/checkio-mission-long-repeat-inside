@@ -1,0 +1,188 @@
+<body data-author="Doppelok">
+<div class="question-answer">
+    <div class="question">
+        Ich weiß nicht, wie ich mit der Lösung dieser Mission beginnen soll
+    </div>
+    <div class="answer">
+        <p>Sie müssen die längste Teilzeichenkette ermitteln, die mehr als einmal in einer Zeichenkette vorkommt. Sie können zum Beispiel for
+        schleifen verwenden, um über eine gegebene Zeichenkette und Teilzeichenketten zu iterieren und dann die maximale Länge zurückzugeben. Vergessen Sie auch nicht, dass, wenn
+        die Zeichenfolge leer ist oder keine Teilzeichenfolgen enthält, die der Bedingung entsprechen, sollten Sie die leere Zeichenfolge "" zurückgeben.</p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Ich brauche Hilfe, um die Mission fortzusetzen
+    </div>
+    <div class="answer">
+        <p>Es wird nützlich für Sie sein, einige Informationen zu lesen:
+       <a target="_blank" href='https://docs.python.org/3.10/library/stdtypes.html?highlight=range#range'>range()</a>
+        (<a target="_blank" href='https://www.w3schools.com/python/ref_func_range.asp'>example</a>),
+       <a target="_blank" href='https://docs.python.org/3/tutorial/datastructures.html'>list.append()</a>
+        (<a target="_blank" href='https://www.w3schools.com/python/ref_list_append.asp'>example</a>),
+       <a target="_blank" href='https://docs.python.org/3/library/functions.html?highlight=len#len'>len()</a>
+        (<a target="_blank" href='https://www.w3schools.com/python/ref_func_len.asp'>example</a>) und 
+       <a target="_blank" href='https://docs.python.org/3.10/library/functions.html?highlight=max#max'>max()</a>
+        (<a target="_blank" href='https://www.w3schools.com/python/ref_func_max.asp'>example</a>).</p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Sie brauchen Hilfe!
+    </div>
+    <div class="answer">
+        <p>Beginnen wir mit der Tatsache, dass Sie in for-Schleifen über die Zeile iterieren müssen und die Grenzen der
+        teilzeichenketten. Die Aufgabe besteht darin, dass sich die Teilzeichenkette in jedem Zyklus in "Teilzeichenkette + 1 Element" ändert. Auf diese Weise werden wir jede Variante der Teilzeichenkette durchlaufen.</p>
+        <pre class="brush: python">
+line = 'abc'
+for i in range(len(line)):  # Here we define each time the beginning of the substring
+    for j in range(i+1, len(line) + 1):  # Here we define the end of the substring each time
+            print(line[i:j])
+        </pre>
+        <div class="output">
+            <p>Ausgabe:</p>
+            <pre>
+a
+ab
+abc
+b
+bc
+c</pre>
+        </div>
+        <p>Wie Sie sehen können, sind wir die Zeichenkette durchgegangen und haben alle möglichen Varianten der Teilzeichenketten ausgegeben.</p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Ich stecke fest. Ich brauche einen kleinen Hinweis.
+    </div>
+    <div class="answer">
+        <p>Wir müssen jetzt herausfinden, wie oft jede unserer Teilzeichenketten in der Zeichenkette vorkommt.
+        Wir werden die for-Schleife verwenden, um die möglichen Optionen aufzuzählen.</p>
+        <pre class="brush: python">
+for i in range(len(line)):
+    for j in range(i+1, len(line) + 1):
+        for k in range(2, len(line) + 1):  # k - serves as a multiplier to obtain increased combinations of substrings
+            print(line[i:j] * k)
+        </pre>
+        <div class="output">
+            <p>Ausgabe:</p>
+            <pre>
+aa
+aaa
+abab
+ababab
+abcabc
+abcabcabc
+bb
+bbb
+bcbc
+bcbcbc
+cc
+ccc</pre>
+        </div> 
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Nichts funktioniert. SOS
+    </div>
+    <div class="answer">
+        <p>OK, verwenden Sie die if-Bedingung, um zu prüfen, ob die erhöhte Teilstring-Variation in der angegebenen Zeichenkette enthalten ist.</p>
+        <pre class="brush: python">
+for i in range(len(line)):
+    for j in range(i+1, len(line) + 1):
+        for k in range(2, len(line) + 1):
+            if line[i:j] * k in line:
+                print(line[i:j] * k)
+        </pre>
+        <div class="output">
+            <p>Ausgabe:</p>
+            <pre>""</pre>
+        </div>
+        <p>Wie Sie sehen können, gibt die Bedingung eine leere Zeichenkette zurück. Das liegt daran, dass wir die Bedingung der Aufgabe nicht erfüllen
+        aufgabe. Hier ist ein Beispiel für die Zeichenfolge "aaaa".</p>
+        <pre class="brush: python">
+for i in range(len(line)):
+    for j in range(i+1, len(line) + 1):
+        for k in range(2, len(line) + 1):
+            if line[i:j] * k in line:
+                print(line[i:j] * k)
+        </pre>
+        <div class="output">
+            <p>Ausgabe:</p>
+            <pre>
+aa
+aaa
+aaaa
+aaaa
+aa
+aaa
+...</pre>
+        </div>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Ich will nicht aufgeben, Hilfe!
+    </div>
+    <div class="answer">
+        <p>Sie haben noch ein paar Dinge zu erledigen. Fügen Sie eine Listenvariable hinzu, zu der Sie Ihre Ergebnisse nach der Überprüfung von if hinzufügen werden.
+        Und geben Sie auch die längste Zeichenkette aus dieser Liste zurück.</p>
+        <div class="spoiler">
+        <pre class="brush: python">
+def repeat_inside(line: str) -> str:
+            
+    result = []
+    for i in range(len(line)):
+        for j in range(i+1, len(line) + 1):
+            for k in range(2, len(line) + 1):
+                if line[i:j] * k in line:
+                    result.append(line[i:j] * k)
+    return max(result, key= len, default='')
+        </pre>
+        </div>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Ich möchte der beste der besten PROGRAMMIERER werden!!! ZEIGEN SIE MIR MEHR LÖSUNGEN!!!1!!!11!
+    </div>
+    <div class="answer">
+        <p>Okay, okay! Das ist die richtige Einstellung!=)
+        Diese Lösung wird schwer zu verstehen sein. Das
+        <a target="_blank" href='https://docs.python.org/3.10/library/re.html'>"re"</a> modul wird hier verwendet. Mit Hilfe des Ausdrucks "re.findall(r'(?=(.+?)\2+))', line)" können wir die Zeichenkette durchgehen und alle Kombinationen ermitteln, die mehr als einmal in der Zeichenkette vorkommen und einfach die längste Teilzeichenkette zurückgeben.</p>
+        <div class="spoiler">
+        <pre class="brush: python">
+import re
+
+
+def repeat_inside(line: str) -> str:
+            
+    result = re.findall(r'(?=((.+?)\2+))', line)
+    return max([i[0] for i in result], key= len, default= '')
+        </pre>
+        </div>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Ich will mehr!
+    </div>
+    <div class="answer">
+        <p>Sehen Sie sich diese Lösung an. Dies ist eine einzeilige Version unserer Lösung.</p>
+        <div class="spoiler">
+        <pre class="brush: python">
+def repeat_inside(line: str) -> str:
+            
+    return max([
+        line[i:j] * k
+        for i in range(len(line))
+        for j in range(i+1, len(line))
+        for k in range(2, len(line) + 1)
+        if line[i:j] * k in line
+    ], key=len, default= '')
+        </pre>
+        </div>
+    </div>
+</div>
+</body>
